@@ -6,6 +6,7 @@
   - Black
   - Flake8
   - Pydocstyle
+- pdoc
 
 ## Template Structure
 
