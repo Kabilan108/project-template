@@ -15,3 +15,11 @@ repos:
       types: [python]
       stages: [commit]
       language: system
+
+    - id: pydocstyle
+      name: docstyle
+      entry: pydocstyle
+      types: [python]
+      stages: [commit]
+      language: system
+      exclude: ^tests/
