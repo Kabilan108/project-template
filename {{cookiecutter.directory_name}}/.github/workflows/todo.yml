@@ -24,9 +24,9 @@ jobs:
           {"name": "FEAT",  "labels": ["feature"]}
         ]'
         ISSUE_TEMPLATE: |
-          **{{ title }}**
+          {{ "**{{ title }}**" }}
           ----
-          {{ body }}
+          {{ "{{ body }}" }}
 
-          **[Code:]({{ url }})**
-          {{ snippet }}
+          {{ "**[Code:]({{ url }})**" }}
+          {{ "{{ snippet }}" }}
