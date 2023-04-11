@@ -1,5 +1,6 @@
 {
-    "directory_name": "Hello",
-    "file_name": "Howdy",
-    "greeting_recipient": "World"
+    "directory_name": "someGPT",
+    "project_name": "someGPT",
+    "author": "TKO",
+    "email": ""
 }
