@@ -1,0 +1,32 @@
+name: docs
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  todo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: TODO to Issue
+      uses: "alstr/todo-to-issue-action@v4"
+      with:
+        CLOSE_ISSUES: true
+        AUTO_ASSIGN: true
+        IDENTIFIERS: '[
+          {"name": "TODO",  "labels": ["todo"]},
+          {"name": "FIXME", "labels": ["bug"]},
+          {"name": "BUG",   "labels": ["bug"]},
+          {"name": "DOC",   "labels": ["documentation"]},
+          {"name": "FEAT",  "labels": ["feature"]}
+        ]'
+        ISSUE_TEMPLATE: |
+          **{{ title }}**
+          ----
+          {{ body }}
+
+          **[Code:]({{ url }})**
+          {{ snippet }}

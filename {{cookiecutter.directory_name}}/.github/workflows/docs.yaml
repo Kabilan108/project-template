@@ -1,0 +1,58 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Python 🐍
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Generate documentation 📚
+        run: |
+          pip insall pdoc
+          pdoc ./utils ./slurm -o ./docs
+      
+      - name: Commit and push 📦
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add ./docs
+          git commit -m "Update docs"
+          git push
+      
+      - name: Setup GitHub Pages 📄
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifacts 📦
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v1
