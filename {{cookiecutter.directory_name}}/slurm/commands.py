@@ -43,7 +43,7 @@ def generic_yaml_command(py_path: str, yaml_file: str) -> str:
     str
         command to be passed to SLURM.
     """
-    return f"python {py_path} --yaml_file {yaml_file}"
+    return f"python {py_path} --config {yaml_file}"
 
 
 def dict_to_str(_dict: Dict) -> str:
