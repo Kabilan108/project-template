@@ -30,4 +30,4 @@ The notebooks typically has four sections,
    
    * submit_array(root_dir, command_list, node_setting, job_name, *conda_path*): conda_path is optional
    
-Use *squeue -u mudid* and *jobinfo job_id* to check the status of the job array.
+Use *squeue -u <user>* and *jobinfo job_id* to check the status of the job array.
